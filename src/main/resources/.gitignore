@@ -1,0 +1,13 @@
+# Ignorar carpetas específicas
+node_modules/
+dist/
+.vscode/
+.idea/
+
+# Ignorar archivos específicos
+*.log
+*.env
+
+# Ignorar todo excepto lo indicado
+# Si deseas incluir ciertas subcarpetas de una carpeta ignorada, puedes usar !. Ejemplo:
+# !important-folder/
