@@ -1,0 +1,13 @@
+# server:
+#   port: 8080 # Puerto donde correrá este servicio
+
+ spring:
+   application:
+     name: clasificacion # Este nombre aparecerá en Eureka
+
+ eureka:
+   client:
+     service-url:
+       default-zone: http://localhost:8761/eureka/ # URL del servidor Eureka
+     register-with-eureka: true # Este cliente debe registrarse en Eureka
+     fetch-registry: true # Este cliente debe obtener la lista de servicios registrados
