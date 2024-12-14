@@ -1,41 +1,53 @@
 package com.clasificacion.Service;
 
+import com.clasificacion.Entity.ProductosEntity;
+import com.clasificacion.Repository.ProductosRepository;
+import com.clasificacion.feign.DescripcionMinima;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.clasificacion.Entity.Productos;
-import com.clasificacion.Repository.Repositorio;
 
 import java.util.List;
 
 @Service
 public class ProductosService {
-    @Autowired
-    private Repositorio repositorio;
 
-    public List<Productos> listarTodos() {
+    @Autowired
+    private ProductosRepository repositorio;
+
+    // Listar todos los productos
+    public List<ProductosEntity> listarTodos() {
         return repositorio.findAll();
     }
 
-    public Productos obtenerPorId(Long id) {
-        return repositorio.findById(id).orElseThrow(() -> new RuntimeException("Producto no encontrado con ID: " + id));
-    }
-
-    public Productos guardar(Productos producto) {
+    // Guardar un producto
+    public ProductosEntity guardarProducto(ProductosEntity producto) {
         return repositorio.save(producto);
     }
 
-    public Productos actualizar(Long id, Productos producto) {
-        Productos existente = obtenerPorId(id);
-        existente.setNombre(producto.getNombre());
-        existente.setDescripcion(producto.getDescripcion());
-        existente.setCategoria(producto.getCategoria());
-        existente.setPrecio(producto.getPrecio());
-        return repositorio.save(existente);
+    // Obtener un producto por su ID
+    public ProductosEntity obtenerProductoPorId(Long id) {
+        return repositorio.findById(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
     }
 
-    public void borrar(Long id) {
+    // Actualizar un producto por su ID
+    public ProductosEntity actualizarProducto(Long id, ProductosEntity producto) {
+        ProductosEntity productoExistente = obtenerProductoPorId(id);
+        productoExistente.setNombre(producto.getNombre());
+        productoExistente.setPrecio(producto.getPrecio());
+        productoExistente.setSubpartida(producto.getSubpartida());
+        productoExistente.setCategoria(producto.getCategoria());
+        productoExistente.setDescripcion(producto.getDescripcion());
+        return repositorio.save(productoExistente);
+    }
+
+    // Eliminar un producto por su ID
+    public void eliminarProducto(Long id) {
         repositorio.deleteById(id);
     }
-}
 
+    // Obtener descripciones mínimas (pendiente de implementación)
+    public List<DescripcionMinima> obtenerDescripcionesMinimas(String subpartida) {
+        throw new UnsupportedOperationException("Implementación pendiente.");
+    }
+}
