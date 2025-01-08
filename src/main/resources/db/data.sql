@@ -28,3 +28,9 @@ SELECT 'computador', 'procesador de datos', 'computadores', 1500, '9010909090'
 WHERE NOT EXISTS (
     SELECT 1 FROM productos WHERE nombre = 'computador' AND subpartida = '9010909090'
 );
+
+INSERT INTO usuarios (identificacion, nombre, email, password)
+SELECT '123456789', 'Admin', 'admin@example.com', SHA2('admin', 256)
+    WHERE NOT EXISTS (
+    SELECT 1 FROM usuarios WHERE email = 'admin@example.com'
+);
