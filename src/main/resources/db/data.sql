@@ -30,7 +30,12 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO usuarios (identificacion, nombre, email, password)
-SELECT '123456789', 'Admin', 'admin@example.com', SHA2('admin', 256)
+SELECT '123', 'Admin', 'admin@example.com', SHA2('123', 256)
     WHERE NOT EXISTS (
     SELECT 1 FROM usuarios WHERE email = 'admin@example.com'
+);
+INSERT INTO usuarios (identificacion, nombre, email, password)
+SELECT '1234', 'root', 'root@example.com', SHA2('123', 256)
+    WHERE NOT EXISTS (
+    SELECT 1 FROM usuarios WHERE email = 'root@example.com'
 );
