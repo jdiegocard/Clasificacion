@@ -1,0 +1,57 @@
+[
+  {
+    "name": "type:story",
+    "color": "0e8a16",
+    "description": "User Story"
+  },
+  {
+    "name": "type:bug",
+    "color": "d73a4a",
+    "description": "Bug"
+  },
+  {
+    "name": "triage",
+    "color": "c2e0c6",
+    "description": "Needs grooming"
+  },
+  {
+    "name": "blocked",
+    "color": "b60205",
+    "description": "Blocked by dependency"
+  },
+  {
+    "name": "ready",
+    "color": "5319e7",
+    "description": "Meets DoR; ready to start"
+  },
+  {
+    "name": "in progress",
+    "color": "1d76db",
+    "description": "Being actively worked on"
+  },
+  {
+    "name": "review",
+    "color": "fbca04",
+    "description": "Awaiting code review"
+  },
+  {
+    "name": "done",
+    "color": "0e8a16",
+    "description": "Meets DoD; completed"
+  },
+  {
+    "name": "low",
+    "color": "bfe5bf",
+    "description": "Low priority"
+  },
+  {
+    "name": "medium",
+    "color": "fef2c0",
+    "description": "Medium priority"
+  },
+  {
+    "name": "high",
+    "color": "b60205",
+    "description": "High priority"
+  }
+]
