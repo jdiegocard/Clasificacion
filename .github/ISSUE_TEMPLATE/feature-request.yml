@@ -1,30 +1,89 @@
-name: "Feature Request"
-description: "Proponer una nueva funcionalidad"
-labels: ["enhancement"]
+name: "Nueva Funcionalidad"
+description: "Proponer y acotar una funcionalidad con valor medible"
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
 body:
-  - type: markdown
+  - type: textarea
+    id: problem
     attributes:
-      value: |
-        ## Solicitud de Funcionalidad
-        Explica la necesidad y el valor.
+      label: Problema / oportunidad
+      placeholder: "Usuarios necesitan exportar clasificaciones para auditoría"
+    validations:
+      required: true
+
+  - type: textarea
+    id: business_value
+    attributes:
+      label: Valor de negocio (KPIs/Métricas)
+      placeholder: "Reduce 30% tiempo de auditoría; +NPS; menos tickets de soporte"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Solución propuesta (alto nivel)
+      placeholder: "Endpoint GET /export csv|xlsx con filtros; límite 100k registros"
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Alcance (IN) / Fuera de alcance (OUT)
+      placeholder: |
+        IN: export CSV/XLSX vía API; filtros por fecha y etiqueta
+        OUT: interfaz UI, envío por email
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Criterios de aceptación
+      placeholder: |
+        - [ ] Exporta hasta 100k filas en < 30s
+        - [ ] Soporta CSV y XLSX
+        - [ ] Registra auditoría de descarga
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Riesgos / Seguridad / Privacidad
+      placeholder: "Riesgo de fuga de datos; aplicar firmado y rate limit"
+    validations:
+      required: true
+
+  - type: textarea
+    id: rollout
+    attributes:
+      label: Plan de despliegue y rollback
+      placeholder: "Feature flag + canary 10% + monitoreo; rollback si error ratio > 1%"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridad
+      options: ["Urgente","Alto","Medio","Bajo"]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: size
+    attributes:
+      label: Tamaño estimado (SP/TALLA)
+      options: ["1","3","5","8","13"]
+    validations:
+      required: true
+
   - type: input
-    id: title
+    id: target_date
     attributes:
-      label: Título
-      description: Nombre corto de la funcionalidad.
-      placeholder: "Ej: Exportar clasificación a CSV"
-  - type: textarea
-    id: context
-    attributes:
-      label: Contexto
-      description: ¿Por qué es necesaria esta funcionalidad?
-  - type: textarea
-    id: solution
-    attributes:
-      label: Solución propuesta
-      description: Explica cómo debería funcionar.
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternativas consideradas
-      description: Otras opciones que evaluaste.
+      label: Fecha objetivo (si aplica)
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: false
