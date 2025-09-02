@@ -1,35 +1,102 @@
-name: "User Story"
-description: "Crear una nueva historia de usuario"
-labels: ["user story"]
+name: "Historia de Usuario"
+description: "Definir una historia con valor claro y criterios testables"
+title: "[Story]: "
+labels: ["user story", "triage"]
 body:
-  - type: markdown
+  - type: textarea
+    id: persona
     attributes:
-      value: |
-        ## Historia de Usuario
-        Completa la siguiente información.
-  - type: input
-    id: role
-    attributes:
-      label: Como
-      description: ¿Qué tipo de usuario?
-      placeholder: "Ej: Analista"
-  - type: input
+      label: Como (persona/rol)
+      placeholder: "Como Analista de Operaciones"
+    validations:
+      required: true
+
+  - type: textarea
     id: need
     attributes:
-      label: Quiero
-      description: ¿Qué necesita lograr el usuario?
-      placeholder: "Ej: Clasificar registros automáticamente"
-  - type: input
-    id: purpose
+      label: Quiero (necesidad)
+      placeholder: "Quiero clasificar automáticamente registros por riesgo"
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefit
     attributes:
-      label: Para
-      description: ¿Cuál es el beneficio?
-      placeholder: "Ej: Reducir tiempo de validación manual"
+      label: Para (beneficio/valor)
+      placeholder: "Para reducir tiempo de validación manual y errores"
+    validations:
+      required: true
+
   - type: textarea
     id: acceptance
     attributes:
-      label: Criterios de Aceptación
-      description: Define cuándo se considera terminada la historia.
+      label: Criterios de aceptación (Given/When/Then)
       placeholder: |
-        - [ ] El sistema clasifica al menos el 80% de los casos
-        - [ ] Los errores se muestran en logs
+        - [ ] Dado un lote válido, cuando ejecute el clasificador, entonces genera etiquetas y puntaje.
+        - [ ] Dado un registro inválido, cuando detecte inconsistencias, entonces lo marca y continúa.
+    validations:
+      required: true
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Fuera de alcance (explícito)
+      placeholder: "No incluye UI nueva ni exportación; solo API."
+    validations:
+      required: false
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencias / Bloqueos
+      placeholder: "Esquema BD listo; endpoint /auth ok; modelo X entrenado"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridad
+      options: ["Urgente","Alto","Medio","Bajo"]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: size
+    attributes:
+      label: Tamaño (Story Points / TALLA)
+      options: ["1 (Pequeñito)","3 (Pequeño)","5 (Medio)","8 (Grande)","13 (X-Grande)"]
+    validations:
+      required: true
+
+  - type: input
+    id: target_date
+    attributes:
+      label: Fecha objetivo/entrega (opcional)
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: dor
+    attributes:
+      label: Definition of Ready (DoR)
+      options:
+        - label: "Valor y objetivo claros"
+        - label: "Criterios de aceptación testables"
+        - label: "Dependencias identificadas"
+        - label: "Estimación acordada (TALLA/SP)"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: Definition of Done (DoD)
+      options:
+        - label: "Tests (unit/integ) pasan (> cobertura base)"
+        - label: "Código revisado y mergeado"
+        - label: "Documentación/CHANGELOG actualizados"
+        - label: "Feature flag/rollback plan (si aplica)"
+    validations:
+      required: true
