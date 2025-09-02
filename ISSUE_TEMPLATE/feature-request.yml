@@ -1,0 +1,30 @@
+name: "Feature Request"
+description: "Proponer una nueva funcionalidad"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Solicitud de Funcionalidad
+        Explica la necesidad y el valor.
+  - type: input
+    id: title
+    attributes:
+      label: Título
+      description: Nombre corto de la funcionalidad.
+      placeholder: "Ej: Exportar clasificación a CSV"
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto
+      description: ¿Por qué es necesaria esta funcionalidad?
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solución propuesta
+      description: Explica cómo debería funcionar.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+      description: Otras opciones que evaluaste.
