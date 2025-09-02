@@ -1,43 +1,125 @@
 name: "Bug Report"
-description: "Reportar un error en el sistema"
-labels: ["bug"]
+description: "Reportar un error reproducible con impacto claro"
+title: "[Bug]: "
+labels: ["bug", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## Reporte de Bug
-        Describe el error encontrado.
+        Completa **todos** los campos. Un buen bug siempre tiene pasos claros, resultado esperado/actual y contexto.
+
   - type: input
     id: summary
     attributes:
-      label: Resumen
-      description: Breve descripción del bug.
-      placeholder: "Ej: Error al clasificar valores nulos"
+      label: Resumen breve
+      placeholder: "Error al clasificar valores nulos en módulo X"
+    validations:
+      required: true
+
   - type: textarea
     id: steps
     attributes:
       label: Pasos para reproducir
-      description: Lista los pasos exactos.
+      description: "Incluye datos de prueba, usuario, URL/endpoint, etc."
       placeholder: |
-        1. Crear registro con campo nulo
-        2. Ejecutar clasificación
-        3. Observar la excepción
+        1) Enviar payload {...}
+        2) Ejecutar POST /api/v1/clasificar
+        3) Se lanza excepción NullPointerException
+    validations:
+      required: true
+
   - type: textarea
     id: expected
     attributes:
       label: Resultado esperado
-      description: Qué debería ocurrir en su lugar.
+      placeholder: "El registro con null se marca como inválido, no falla"
+    validations:
+      required: true
+
   - type: textarea
     id: actual
     attributes:
       label: Resultado actual
-      description: Qué ocurrió realmente.
+      placeholder: "Se lanza excepción 500 y se detiene el proceso"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Entorno / versión
+      description: "SO, navegador/versión, app versión, branch/commit, base de datos, región, etc."
+      placeholder: "Prod | Ubuntu 22.04 | App 1.4.2 | Commit abc123 | DB pg-14"
+    validations:
+      required: true
+
   - type: dropdown
     id: severity
     attributes:
-      label: Severidad
+      label: Severidad (impacto técnico/operativo)
       options:
-        - Baja
-        - Media
-        - Alta
-        - Crítica
+        - Crítica (servicio caído, pérdida de datos)
+        - Alta (funcionalidad clave rota, sin workaround)
+        - Media (afecta flujo, tiene workaround)
+        - Baja (cosmético/menor)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridad (orden de atención)
+      options:
+        - Urgente
+        - Alto
+        - Medio
+        - Bajo
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: regression
+    attributes:
+      label: ¿Regresión?
+      options:
+        - label: "Es un bug que antes funcionaba"
+    validations:
+      required: false
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Alcance/impacto (cuántos usuarios, módulos, ingresos, SLA)
+      placeholder: "Afecta a ~35% de lotes, incumple SLA 99.9%"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Evidencia (logs / capturas / payloads)
+      description: "Pega extractos (sin datos sensibles) o adjunta archivos."
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Criterios de aceptación del fix (Given/When/Then)
+      placeholder: |
+        - [ ] Dado un payload con campos nulos, cuando se procese, entonces se marca como inválido y no falla.
+        - [ ] Se registran eventos de validación en logs a nivel INFO.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: Definition of Done (DoD)
+      options:
+        - label: "Tests unitarios/integ pasan y cubren el caso"
+        - label: "Logs y métricas actualizados"
+        - label: "Doc/CHANGELOG actualizados (de ser necesario)"
+        - label: "Validado en entorno QA"
+    validations:
+      required: true
