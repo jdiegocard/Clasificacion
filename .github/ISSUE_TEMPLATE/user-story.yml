@@ -1,0 +1,35 @@
+name: "User Story"
+description: "Crear una nueva historia de usuario"
+labels: ["user story"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Historia de Usuario
+        Completa la siguiente información.
+  - type: input
+    id: role
+    attributes:
+      label: Como
+      description: ¿Qué tipo de usuario?
+      placeholder: "Ej: Analista"
+  - type: input
+    id: need
+    attributes:
+      label: Quiero
+      description: ¿Qué necesita lograr el usuario?
+      placeholder: "Ej: Clasificar registros automáticamente"
+  - type: input
+    id: purpose
+    attributes:
+      label: Para
+      description: ¿Cuál es el beneficio?
+      placeholder: "Ej: Reducir tiempo de validación manual"
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Criterios de Aceptación
+      description: Define cuándo se considera terminada la historia.
+      placeholder: |
+        - [ ] El sistema clasifica al menos el 80% de los casos
+        - [ ] Los errores se muestran en logs
