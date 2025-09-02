@@ -1,0 +1,59 @@
+name: "Tarea Técnica / Spike"
+description: "Refactor, deuda técnica o investigación"
+title: "[Tech]: "
+labels: ["tech debt", "refactor", "triage"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto / problema técnico
+      placeholder: "El servicio de clasificación tiene acoplamiento fuerte con módulo A"
+    validations:
+      required: true
+  - type: textarea
+    id: approach
+    attributes:
+      label: Enfoque propuesto
+      placeholder: "Extraer interfaz, añadir tests, desacoplar persistencia"
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Criterios de aceptación (medibles)
+      placeholder: |
+        - [ ] Cobertura > 80% en módulo X
+        - [ ] Reducción de tiempo de build a < 5min
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Riesgos / compatibilidad / migración
+      placeholder: "Cambios en contratos; plan de migración por fases"
+    validations:
+      required: false
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridad
+      options: ["Urgente","Alto","Medio","Bajo"]
+    validations:
+      required: true
+  - type: dropdown
+    id: size
+    attributes:
+      label: Tamaño (SP/TALLA)
+      options: ["1","3","5","8","13"]
+    validations:
+      required: true
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: Definition of Done (DoD)
+      options:
+        - label: "Tests pasan (unit/integration)"
+        - label: "Sin degradación de performance observada"
+        - label: "Docs/ADR/CHANGELOG actualizados"
+    validations:
+      required: true
